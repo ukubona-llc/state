@@ -22,9 +22,12 @@
     <!-- End Jekyll SEO tag -->
     
     <link rel="stylesheet" href="/state/assets/css/style.css?v=ea58765acc59452529c3c62b59529af837274bb3">
+    
+    <!-- FIXED GOOGLE FONTS IMPORT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <script>
       window.MathJax = {
         tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] }
@@ -44,15 +47,40 @@
             --amber: #e8a95c;
             --amber-dim: rgba(232, 169, 92, 0.15);
             --violet: #8a6fd6;
-            --font-serif: 'DM Serif Display', serif;
-            --font-sans: 'DM Sans', sans-serif;
-            --font-mono: 'DM Mono', monospace;
+        }
+
+        /* AGGRESSIVE RESET AGAINST .markdown-body */
+        .ukb-wrapper,
+        .ukb-wrapper p,
+        .ukb-wrapper div,
+        .ukb-wrapper span {
+            font-family: 'DM Sans', sans-serif !important;
+        }
+
+        .ukb-wrapper h2, 
+        .ukb-wrapper h3,
+        .ukb-wrapper .node-title {
+            font-family: 'DM Serif Display', serif !important;
+            font-weight: 400 !important;
+            border-bottom: none !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            line-height: 1.2 !important;
+        }
+
+        .ukb-wrapper .node-meta,
+        .ukb-wrapper .ukb-tab-btn,
+        .ukb-wrapper .stack-tag,
+        .ukb-wrapper .snap-text,
+        .ukb-wrapper .zone-title,
+        .ukb-wrapper .mono-text {
+            font-family: 'DM Mono', monospace !important;
         }
 
         .ukb-wrapper {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: var(--font-sans);
             padding: 30px;
             border-radius: 8px;
             margin-top: 20px;
@@ -68,28 +96,27 @@
         }
 
         .ukb-tab-btn {
-            background: transparent;
-            border: 1px solid transparent;
-            color: var(--text-faint);
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 8px 16px;
+            background: transparent !important;
+            border: 1px solid transparent !important;
+            color: var(--text-faint) !important;
+            font-size: 0.85rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            padding: 8px 16px !important;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 4px !important;
             transition: all 0.2s ease;
         }
 
         .ukb-tab-btn:hover {
-            color: var(--text-main);
-            border-color: var(--border);
+            color: var(--text-main) !important;
+            border-color: var(--border) !important;
         }
 
         .ukb-tab-btn.active {
-            color: var(--amber);
-            background: var(--amber-dim);
-            border-color: var(--amber);
+            color: var(--amber) !important;
+            background-color: var(--amber-dim) !important;
+            border-color: var(--amber) !important;
         }
 
         .ukb-tab-content {
@@ -106,14 +133,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* State Styles (From Original Artifact) */
+        /* State Styles */
         .ukb-wrapper h2.node-title {
-            font-family: var(--font-serif);
-            font-size: 1.75rem;
-            color: var(--amber);
-            margin: 0;
-            border-bottom: none;
-            padding-bottom: 0;
+            font-size: 1.75rem !important;
+            color: var(--amber) !important;
+            margin: 0 !important;
         }
 
         .pentad-grid {
@@ -140,17 +164,22 @@
         }
 
         .node-meta {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-faint);
+            font-size: 0.7rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.1em !important;
+            color: var(--text-faint) !important;
             text-align: right;
+            line-height: 1.4 !important;
         }
 
-        .node-content p { margin: 0 0 16px 0; color: var(--text-dim); }
-        .node-content p:last-child { margin-bottom: 0; }
-        .node-content strong { color: var(--text-main); }
+        .node-content p { 
+            margin: 0 0 16px 0 !important; 
+            color: var(--text-dim) !important; 
+            font-size: 0.95rem !important;
+        }
+        
+        .node-content p:last-child { margin-bottom: 0 !important; }
+        .node-content strong { color: var(--text-main) !important; font-weight: 500 !important; }
 
         .stack-tags {
             display: flex;
@@ -160,13 +189,12 @@
         }
 
         .stack-tag {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            background-color: var(--bg-dark);
-            border: 1px solid var(--border);
-            padding: 4px 10px;
-            border-radius: 20px;
-            color: var(--text-dim);
+            font-size: 0.65rem !important;
+            background-color: var(--bg-dark) !important;
+            border: 1px solid var(--border) !important;
+            padding: 4px 10px !important;
+            border-radius: 20px !important;
+            color: var(--text-dim) !important;
         }
 
         .snap-boundary {
@@ -191,11 +219,10 @@
             z-index: 2;
             background-color: var(--bg-dark);
             padding: 0 20px;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            color: var(--violet);
-            text-transform: uppercase;
+            font-size: 0.75rem !important;
+            letter-spacing: 0.2em !important;
+            color: var(--violet) !important;
+            text-transform: uppercase !important;
         }
 
         /* Core Addendum Styles */
@@ -208,10 +235,19 @@
         }
         
         .core-box h3 {
-            font-family: var(--font-serif);
-            color: var(--violet);
-            margin-top: 0;
-            border-bottom: none;
+            color: var(--violet) !important;
+            margin-top: 0 !important;
+            margin-bottom: 12px !important;
+            font-size: 1.4rem !important;
+        }
+
+        .core-box p {
+            margin: 0 0 12px 0 !important;
+            color: var(--text-dim) !important;
+        }
+        
+        .core-box p:last-child {
+            margin-bottom: 0 !important;
         }
 
         .manifold-zone {
@@ -229,19 +265,23 @@
         }
 
         .zone-title {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 12px;
+            font-size: 0.75rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.1em !important;
+            margin-bottom: 12px !important;
         }
 
         .zone-box.overdetermined { border-top: 3px solid #81c995; }
-        .zone-box.overdetermined .zone-title { color: #81c995; }
+        .zone-box.overdetermined .zone-title { color: #81c995 !important; }
         .zone-box.underdetermined { border-top: 3px solid #f28b82; }
-        .zone-box.underdetermined .zone-title { color: #f28b82; }
+        .zone-box.underdetermined .zone-title { color: #f28b82 !important; }
         
-        .zone-box p { color: var(--text-dim); font-size: 0.9rem; }
+        .zone-box p { 
+            color: var(--text-dim) !important; 
+            font-size: 0.9rem !important; 
+            margin: 0 !important; 
+            line-height: 1.5 !important;
+        }
     </style>
   </head>
   
@@ -251,16 +291,17 @@
 
       <div class="ukb-wrapper">
           <div class="ukb-tabs">
-              <button class="ukb-tab-btn active" onclick="openTab('tab-state')">Cartesian State (Baseline)</button>
-              <button class="ukb-tab-btn" onclick="openTab('tab-core')">The Core Addendum</button>
+              <!-- FIXED: Passed 'event' explicitly to prevent undefined reference -->
+              <button class="ukb-tab-btn active" onclick="openTab(event, 'tab-state')">Cartesian State (Baseline)</button>
+              <button class="ukb-tab-btn" onclick="openTab(event, 'tab-core')">The Core Addendum</button>
           </div>
 
           <!-- TAB 1: ORIGINAL CARTESIAN STATE -->
           <div id="tab-state" class="ukb-tab-content active">
-              <div style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--violet); margin-bottom: 16px;">
+              <div class="mono-text" style="font-size: 0.75rem !important; text-transform: uppercase !important; letter-spacing: 0.15em !important; color: var(--violet) !important; margin-bottom: 16px !important;">
                   Ukubona LLC · Epoch: July 12, 2026
               </div>
-              <div style="background-color: var(--amber-dim); border-left: 3px solid var(--amber); padding: 16px 24px; margin-bottom: 24px; font-family: var(--font-mono); font-size: 0.85rem;">
+              <div class="mono-text" style="background-color: var(--amber-dim); border-left: 3px solid var(--amber); padding: 16px 24px; margin-bottom: 24px; font-size: 0.85rem !important; color: var(--text-main) !important; line-height: 1.5 !important;">
                   <strong>The Baseline Invariant:</strong> Before any derivatives are computed, the system must interact with the raw landscape. This captures the uncompressed, 0th-derivative position of Ukubona LLC. It is the starting topology.
               </div>
 
@@ -355,7 +396,7 @@
           <div id="tab-core" class="ukb-tab-content">
               <div class="core-box">
                   <h3>The Uncontaminated Assay</h3>
-                  <p style="color: var(--text-dim); margin-bottom: 0;">
+                  <p>
                       The deployment of the local <code>gemma-4-31b-qat</code> model on an M3 Max was a deliberate architectural stress test. The cloud models (Anthropic, OpenAI, xAI) were "contaminated" by 15 months of TMVES context. The local model provided a zero-shot, uncontaminated judgment on the sequence: <code>Cartesian -> Jacobian -> Hessian -> Identity -> Appraisal</code>. This assay exposed the exact nature of the ontological boundary and dictated the operational constraints of the SlowAPI.
                   </p>
               </div>
@@ -378,14 +419,14 @@
               </div>
 
               <div class="core-box" style="border-left-color: var(--amber); background: linear-gradient(135deg, var(--surface), var(--bg-dark));">
-                  <h3 style="color: var(--amber);">Architectural Consequence: Constraining SlowAPI</h3>
-                  <p style="color: var(--text-dim);">
+                  <h3 style="color: var(--amber) !important;">Architectural Consequence: Constraining SlowAPI</h3>
+                  <p>
                       This assay proves why the ResonanceMax Clutch Engine is mathematically necessary, but more importantly, it proves <em>how the SlowAPI must operate</em>. 
                   </p>
-                  <p style="color: var(--text-main); margin-top: 12px; font-weight: 500;">
+                  <p style="color: var(--text-main) !important; font-weight: 500 !important;">
                       When a payload escalates to SlowAPI because it has entered the Underdetermined Manifold, the local LLM cannot be allowed to operate unbounded. 
                   </p>
-                  <p style="color: var(--text-dim); margin-bottom: 0;">
+                  <p>
                       If left to free-text generation, it will hallucinate to bridge the ontological gap. Therefore, SlowAPI must be strictly constrained by the architecture: it must either output a deterministic JSON event to append to the Ledger, or explicitly trigger an Elicitation sequence to ask clarifying questions. It must be forced to resolve ambiguity, never allowed to narrate over it.
                   </p>
               </div>
@@ -398,7 +439,7 @@
     <script>
       anchors.add();
       
-      function openTab(tabId) {
+      function openTab(e, tabId) {
           document.querySelectorAll('.ukb-tab-content').forEach(el => {
               el.classList.remove('active');
           });
@@ -406,7 +447,7 @@
               el.classList.remove('active');
           });
           document.getElementById(tabId).classList.add('active');
-          event.currentTarget.classList.add('active');
+          e.currentTarget.classList.add('active');
       }
     </script>
   </body>
