@@ -1,32 +1,13 @@
 <!DOCTYPE html>
-<html lang="en-US">
-  <head>
+<html lang="en" data-theme="dark">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartesian State · Ukubona LLC · 2026-07-12</title>
     
-    <!-- Begin Jekyll SEO tag v2.8.0 -->
-    <title>state</title>
-    <meta name="generator" content="Jekyll v3.10.0" />
-    <meta property="og:title" content="state" />
-    <meta property="og:locale" content="en_US" />
-    <link rel="canonical" href="https://ukubona-llc.github.io/state/" />
-    <meta property="og:url" content="https://ukubona-llc.github.io/state/" />
-    <meta property="og:site_name" content="state" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
-    <meta property="twitter:title" content="state" />
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebSite","headline":"state","name":"state","url":"https://ukubona-llc.github.io/state/"}
-    </script>
-    <!-- End Jekyll SEO tag -->
-    
-    <link rel="stylesheet" href="/state/assets/css/style.css?v=ea58765acc59452529c3c62b59529af837274bb3">
-    
-    <!-- FIXED GOOGLE FONTS IMPORT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <script>
       window.MathJax = {
@@ -34,12 +15,12 @@
       };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
+    
     <style>
-        /* Ukubona Custom Properties */
         :root {
-            --bg-dark: #0b0a0d;
+            --bg: #0b0a0d;
             --surface: #121016;
+            --surface-hover: #1a1820;
             --border: #2a2531;
             --text-main: #eae6df;
             --text-dim: #a89f92;
@@ -47,408 +28,422 @@
             --amber: #e8a95c;
             --amber-dim: rgba(232, 169, 92, 0.15);
             --violet: #8a6fd6;
+            --violet-dim: rgba(138, 111, 214, 0.15);
+            --font-serif: 'DM Serif Display', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-mono: 'DM Mono', monospace;
         }
 
-        /* AGGRESSIVE RESET AGAINST .markdown-body */
-        .ukb-wrapper,
-        .ukb-wrapper p,
-        .ukb-wrapper div,
-        .ukb-wrapper span {
-            font-family: 'DM Sans', sans-serif !important;
-        }
-
-        .ukb-wrapper h2, 
-        .ukb-wrapper h3,
-        .ukb-wrapper .node-title {
-            font-family: 'DM Serif Display', serif !important;
-            font-weight: 400 !important;
-            border-bottom: none !important;
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
-            padding-bottom: 0 !important;
-            line-height: 1.2 !important;
-        }
-
-        .ukb-wrapper .node-meta,
-        .ukb-wrapper .ukb-tab-btn,
-        .ukb-wrapper .stack-tag,
-        .ukb-wrapper .snap-text,
-        .ukb-wrapper .zone-title,
-        .ukb-wrapper .mono-text {
-            font-family: 'DM Mono', monospace !important;
-        }
-
-        .ukb-wrapper {
-            background-color: var(--bg-dark);
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
             color: var(--text-main);
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 20px;
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Tab UI */
-        .ukb-tabs {
+        /* --- GLOBAL TAB UI --- */
+        .ukb-global-nav {
             display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
+            justify-content: center;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(11, 10, 13, 0.95);
             border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            backdrop-filter: blur(8px);
         }
-
-        .ukb-tab-btn {
-            background: transparent !important;
-            border: 1px solid transparent !important;
-            color: var(--text-faint) !important;
-            font-size: 0.85rem !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.05em !important;
-            padding: 8px 16px !important;
+        
+        .ukb-tab {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-faint);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 8px 20px;
+            border-radius: 4px;
             cursor: pointer;
-            border-radius: 4px !important;
             transition: all 0.2s ease;
         }
-
-        .ukb-tab-btn:hover {
-            color: var(--text-main) !important;
-            border-color: var(--border) !important;
+        
+        .ukb-tab:hover {
+            color: var(--text-main);
+            border-color: var(--text-dim);
+        }
+        
+        .ukb-tab.active {
+            color: var(--amber);
+            border-color: var(--amber);
+            background: rgba(232, 169, 92, 0.08);
         }
 
-        .ukb-tab-btn.active {
-            color: var(--amber) !important;
-            background-color: var(--amber-dim) !important;
-            border-color: var(--amber) !important;
-        }
-
-        .ukb-tab-content {
+        .ukb-view {
             display: none;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.4s ease;
         }
-
-        .ukb-tab-content.active {
+        
+        .ukb-view.active {
             display: block;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* State Styles */
-        .ukb-wrapper h2.node-title {
-            font-size: 1.75rem !important;
-            color: var(--amber) !important;
-            margin: 0 !important;
-        }
+        /* =========================================================
+           DOC 1: CARTESIAN STATE (BASELINE) EXACT CSS
+           ========================================================= */
+        .doc-baseline .container { max-width: 840px; margin: 0 auto; padding: 60px 24px 100px; }
+        .doc-baseline header { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
+        .doc-baseline .eyebrow { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--violet); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+        .doc-baseline .eyebrow::before { content: ''; display: inline-block; width: 8px; height: 8px; background-color: var(--amber); border-radius: 50%; }
+        .doc-baseline h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; line-height: 1.1; margin: 0 0 16px 0; color: var(--text-main); }
+        .doc-baseline .subtitle { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-dim); letter-spacing: 0.05em; }
 
-        .pentad-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            margin-top: 20px;
-        }
+        .doc-baseline .pentad-grid { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+        .doc-baseline .pentad-node { background-color: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 32px; position: relative; transition: border-color 0.3s ease; }
+        .doc-baseline .pentad-node:hover { border-color: var(--violet); }
+        .doc-baseline .node-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+        .doc-baseline .node-title { font-family: var(--font-serif); font-size: 1.75rem; color: var(--amber); margin: 0; }
+        .doc-baseline .node-meta { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); text-align: right; }
+        .doc-baseline .node-content p { margin: 0 0 16px 0; color: var(--text-dim); }
+        .doc-baseline .node-content p:last-child { margin-bottom: 0; }
 
-        .pentad-node {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 32px;
-        }
+        .doc-baseline .invariant-box { background-color: var(--amber-dim); border-left: 3px solid var(--amber); padding: 16px 24px; margin: 24px 0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-main); }
+        .doc-baseline .stack-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+        .doc-baseline .stack-tag { font-family: var(--font-mono); font-size: 0.65rem; background-color: var(--bg); border: 1px solid var(--border); padding: 4px 10px; border-radius: 20px; color: var(--text-dim); }
+        .doc-baseline .snap-boundary { margin: 40px 0; text-align: center; position: relative; }
+        .doc-baseline .snap-boundary::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: repeating-linear-gradient(90deg, var(--border), var(--border) 10px, transparent 10px, transparent 20px); z-index: 1; }
+        .doc-baseline .snap-text { position: relative; z-index: 2; background-color: var(--bg); padding: 0 20px; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.2em; color: var(--violet); text-transform: uppercase; }
+        .doc-baseline .footer-metrics { margin-top: 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; border-top: 1px solid var(--border); padding-top: 30px; }
+        .doc-baseline .metric { text-align: center; }
+        .doc-baseline .metric-val { font-family: var(--font-mono); font-size: 1.25rem; color: var(--text-main); margin-bottom: 8px; }
+        .doc-baseline .metric-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.1em; }
 
-        .node-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 16px;
-        }
 
-        .node-meta {
-            font-size: 0.7rem !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.1em !important;
-            color: var(--text-faint) !important;
-            text-align: right;
-            line-height: 1.4 !important;
-        }
+        /* =========================================================
+           DOC 2: THE CORE ADDENDUM EXACT CSS
+           ========================================================= */
+        .doc-addendum .container { max-width: 880px; margin: 0 auto; padding: 60px 24px 100px; }
+        .doc-addendum header { margin-bottom: 48px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
+        .doc-addendum .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--violet); margin-bottom: 12px; }
+        .doc-addendum h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.1; margin: 0 0 12px 0; }
+        .doc-addendum .subtitle { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); letter-spacing: 0.05em; }
+        .doc-addendum .section-title { font-family: var(--font-serif); font-size: 1.6rem; color: var(--amber); margin: 48px 0 20px 0; border-bottom: 1px dashed var(--border); padding-bottom: 8px; }
+        .doc-addendum p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px; }
+        .doc-addendum strong { color: var(--text-main); font-weight: 500; }
 
-        .node-content p { 
-            margin: 0 0 16px 0 !important; 
-            color: var(--text-dim) !important; 
-            font-size: 0.95rem !important;
-        }
-        
-        .node-content p:last-child { margin-bottom: 0 !important; }
-        .node-content strong { color: var(--text-main) !important; font-weight: 500 !important; }
+        .doc-addendum .table-wrap { overflow-x: auto; margin: 24px 0; border: 1px solid var(--border); border-radius: 6px; }
+        .doc-addendum table { width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left; }
+        .doc-addendum th, .doc-addendum td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+        .doc-addendum th { background-color: var(--surface); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
+        .doc-addendum tr:last-child td { border-bottom: none; }
+        .doc-addendum .model-tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .doc-addendum .tag-local { background: #3a2a45; color: #b399e8; }
+        .doc-addendum .tag-cloud { background: #1a2a25; color: #5fd9c4; }
 
-        .stack-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
+        .doc-addendum .clutch-card { background: linear-gradient(135deg, var(--surface), var(--bg)); border: 1px solid var(--amber); border-left: 4px solid var(--amber); border-radius: 8px; padding: 28px; margin: 32px 0; }
+        .doc-addendum .clutch-title { font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-main); margin: 0 0 12px 0; display: flex; align-items: center; gap: 12px; }
+        .doc-addendum .clutch-math { font-family: var(--font-mono); background: rgba(0,0,0,0.2); padding: 14px; border-radius: 6px; margin: 16px 0; border: 1px solid var(--border); font-size: 0.9rem; text-align: center; }
 
-        .stack-tag {
-            font-size: 0.65rem !important;
-            background-color: var(--bg-dark) !important;
-            border: 1px solid var(--border) !important;
-            padding: 4px 10px !important;
-            border-radius: 20px !important;
-            color: var(--text-dim) !important;
-        }
+        .doc-addendum .manifold-zone { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+        .doc-addendum .zone-box { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 20px; }
+        .doc-addendum .zone-title { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+        .doc-addendum .zone-box.overdetermined { border-top: 3px solid #81c995; }
+        .doc-addendum .zone-box.overdetermined .zone-title { color: #81c995; }
+        .doc-addendum .zone-box.underdetermined { border-top: 3px solid #f28b82; }
+        .doc-addendum .zone-box.underdetermined .zone-title { color: #f28b82; }
 
-        .snap-boundary {
-            margin: 40px 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .snap-boundary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: repeating-linear-gradient(90deg, var(--border), var(--border) 10px, transparent 10px, transparent 20px);
-            z-index: 1;
-        }
-
-        .snap-text {
-            position: relative;
-            z-index: 2;
-            background-color: var(--bg-dark);
-            padding: 0 20px;
-            font-size: 0.75rem !important;
-            letter-spacing: 0.2em !important;
-            color: var(--violet) !important;
-            text-transform: uppercase !important;
-        }
-
-        /* Core Addendum Styles */
-        .core-box {
-            background-color: var(--surface);
-            border-left: 4px solid var(--violet);
-            padding: 24px;
-            margin-bottom: 24px;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .core-box h3 {
-            color: var(--violet) !important;
-            margin-top: 0 !important;
-            margin-bottom: 12px !important;
-            font-size: 1.4rem !important;
-        }
-
-        .core-box p {
-            margin: 0 0 12px 0 !important;
-            color: var(--text-dim) !important;
-        }
-        
-        .core-box p:last-child {
-            margin-bottom: 0 !important;
-        }
-
-        .manifold-zone {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 24px 0;
-        }
-
-        .zone-box {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 20px;
-        }
-
-        .zone-title {
-            font-size: 0.75rem !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.1em !important;
-            margin-bottom: 12px !important;
-        }
-
-        .zone-box.overdetermined { border-top: 3px solid #81c995; }
-        .zone-box.overdetermined .zone-title { color: #81c995 !important; }
-        .zone-box.underdetermined { border-top: 3px solid #f28b82; }
-        .zone-box.underdetermined .zone-title { color: #f28b82 !important; }
-        
-        .zone-box p { 
-            color: var(--text-dim) !important; 
-            font-size: 0.9rem !important; 
-            margin: 0 !important; 
-            line-height: 1.5 !important;
-        }
+        .doc-addendum .callout { font-style: italic; border-left: 2px solid var(--violet); padding-left: 16px; margin: 20px 0; color: var(--text-main); }
     </style>
-  </head>
-  
-  <body>
-    <div class="container-lg px-3 my-5 markdown-body">
-      <h1 id="state">state</h1>
+</head>
+<body>
 
-      <div class="ukb-wrapper">
-          <div class="ukb-tabs">
-              <!-- FIXED: Passed 'event' explicitly to prevent undefined reference -->
-              <button class="ukb-tab-btn active" onclick="openTab(event, 'tab-state')">Cartesian State (Baseline)</button>
-              <button class="ukb-tab-btn" onclick="openTab(event, 'tab-core')">The Core Addendum</button>
-          </div>
+<!-- GLOBAL TABS -->
+<div class="ukb-global-nav">
+    <button class="ukb-tab active" onclick="switchView('view-baseline', this)">Cartesian State (Baseline)</button>
+    <button class="ukb-tab" onclick="switchView('view-addendum', this)">The Core Addendum</button>
+</div>
 
-          <!-- TAB 1: ORIGINAL CARTESIAN STATE -->
-          <div id="tab-state" class="ukb-tab-content active">
-              <div class="mono-text" style="font-size: 0.75rem !important; text-transform: uppercase !important; letter-spacing: 0.15em !important; color: var(--violet) !important; margin-bottom: 16px !important;">
-                  Ukubona LLC · Epoch: July 12, 2026
-              </div>
-              <div class="mono-text" style="background-color: var(--amber-dim); border-left: 3px solid var(--amber); padding: 16px 24px; margin-bottom: 24px; font-size: 0.85rem !important; color: var(--text-main) !important; line-height: 1.5 !important;">
-                  <strong>The Baseline Invariant:</strong> Before any derivatives are computed, the system must interact with the raw landscape. This captures the uncompressed, 0th-derivative position of Ukubona LLC. It is the starting topology.
-              </div>
+<!-- ==========================================
+     VIEW 1: CARTESIAN STATE
+     ========================================== -->
+<div id="view-baseline" class="ukb-view active">
+    <div class="doc-baseline">
+        <div class="container">
+            <header>
+                <div class="eyebrow">Ukubona LLC · System Baseline</div>
+                <h1>Cartesian State</h1>
+                <div class="subtitle">Epoch: Sunday, July 12, 2026 · SAST</div>
+            </header>
 
-              <div class="pentad-grid">
-                  <div class="pentad-node">
-                      <div class="node-header">
-                          <h2 class="node-title">I. Tensor</h2>
-                          <div class="node-meta">Position<br>Faith / Landscape</div>
-                      </div>
-                      <div class="node-content">
-                          <p><strong>What happened?</strong> The uncompressed reality of the organization.</p>
-                          <p>Ukubona LLC operates as a sovereign entity at the intersection of clinical investigation and civilizational systems engineering. The foundational truth of the system is the <em>append-only ledger</em>. Nothing is mutated; history is preserved. Decision equals Event.</p>
-                          <div class="stack-tags">
-                              <span class="stack-tag">NDJSON Ledgers</span>
-                              <span class="stack-tag">Event Sourcing</span>
-                              <span class="stack-tag">Mac OS / VS Code</span>
-                          </div>
-                      </div>
-                  </div>
+            <div class="invariant-box">
+                <strong>The Baseline Invariant:</strong> Before any derivatives are computed, the system must interact with the raw landscape. This document captures the uncompressed, 0th-derivative position of Ukubona LLC. It is the starting topology.
+            </div>
 
-                  <div class="pentad-node">
-                      <div class="node-header">
-                          <h2 class="node-title">II. Matrix</h2>
-                          <div class="node-meta">Velocity<br>Charity / User Behavior</div>
-                      </div>
-                      <div class="node-content">
-                          <p><strong>What influences what?</strong> The Fast Reflex.</p>
-                          <p>Deployed via Render blueprints, FastAPI catches the noisy telemetry of the world. It computes the Jacobian proxy—the local coupling of dependencies. This layer enforces <em>Charity</em> by preserving redundant human edges against the sparsifying forces of raw optimization.</p>
-                          <div class="stack-tags">
-                              <span class="stack-tag">FastAPI</span>
-                              <span class="stack-tag">React / Vite</span>
-                              <span class="stack-tag">Jacobian Sensitivities</span>
-                          </div>
-                      </div>
-                  </div>
+            <div class="pentad-grid">
+                
+                <!-- I. TENSOR -->
+                <div class="pentad-node">
+                    <div class="node-header">
+                        <h2 class="node-title">I. Tensor</h2>
+                        <div class="node-meta">Position<br>Faith / Landscape</div>
+                    </div>
+                    <div class="node-content">
+                        <p><strong>What happened?</strong> The uncompressed reality of the organization.</p>
+                        <p>Ukubona LLC operates as a sovereign entity at the intersection of clinical investigation and civilizational systems engineering. The foundational truth of the system is the <em>append-only ledger</em>. Nothing is mutated; history is preserved. Decision equals Event.</p>
+                        <p>The company embodies the Bantu ontology (<em>Umuntu ngumuntu ngabantu</em>)—modeling individual health (Hopkins kidney donor reserves) and municipal health (UNDP waste circularity) not as isolated data points, but as dense relational graphs.</p>
+                        <div class="stack-tags">
+                            <span class="stack-tag">NDJSON Ledgers</span>
+                            <span class="stack-tag">Event Sourcing</span>
+                            <span class="stack-tag">Mac OS / VS Code</span>
+                            <span class="stack-tag">Supabase / PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
 
-                  <div class="pentad-node">
-                      <div class="node-header">
-                          <h2 class="node-title">III. Vector</h2>
-                          <div class="node-meta">Acceleration<br>Hope / SGD</div>
-                      </div>
-                      <div class="node-content">
-                          <p><strong>Where is the system tending?</strong> The Gearbox & The Clutch.</p>
-                          <p>The mathematical pivot. The system calculates the eigengap ($g = \frac{\sigma_1 - \sigma_2}{\sigma_1}$) and stable rank ($r_s$) to predict the marginal value of deeper reasoning. This is ResonanceMax in action—identifying structured ambiguity.</p>
-                          <div class="stack-tags">
-                              <span class="stack-tag">Lanczos Approximation</span>
-                              <span class="stack-tag">Eigengap ($g$)</span>
-                              <span class="stack-tag">ResonanceMax</span>
-                          </div>
-                      </div>
-                  </div>
+                <!-- II. MATRIX -->
+                <div class="pentad-node">
+                    <div class="node-header">
+                        <h2 class="node-title">II. Matrix</h2>
+                        <div class="node-meta">Velocity<br>Charity / User Behavior</div>
+                    </div>
+                    <div class="node-content">
+                        <p><strong>What influences what?</strong> The Fast Reflex.</p>
+                        <p>The ingress layer. Deployed via Render blueprints, FastAPI catches the noisy telemetry of the world. It computes the Jacobian proxy—the local coupling of dependencies. This layer enforces <em>Charity</em> by ensuring the network maintains fault tolerance, preserving redundant human edges against the sparsifying forces of raw optimization.</p>
+                        <p>Here, counting (<em>okubala</em>) occurs. Deterministic, swift, and highly sensitive to immediate perturbations.</p>
+                        <div class="stack-tags">
+                            <span class="stack-tag">FastAPI</span>
+                            <span class="stack-tag">React / Vite</span>
+                            <span class="stack-tag">Jacobian Sensitivities</span>
+                            <span class="stack-tag">Redundant Edge Preservation</span>
+                        </div>
+                    </div>
+                </div>
 
-                  <div class="pentad-node">
-                      <div class="node-header">
-                          <h2 class="node-title">IV. Eigenmode</h2>
-                          <div class="node-meta">Jerk<br>Rehearsal / UI-UX</div>
-                      </div>
-                      <div class="node-content">
-                          <p><strong>Which dynamics dominate?</strong> The Deliberative Hold.</p>
-                          <p>When $g \le \tau$, the system shifts to SlowAPI. Counting becomes seeing (<em>kulaba</em>). Inside the <code>&lt;|think|&gt;</code> block, the system holds the tension of competing hypotheses (SoftMax). It rehearses outcomes before collapsing into a single actionable truth.</p>
-                          <div class="stack-tags">
-                              <span class="stack-tag">SlowAPI</span>
-                              <span class="stack-tag">Local LLM Inference</span>
-                              <span class="stack-tag">SoftMax Suspension</span>
-                          </div>
-                      </div>
-                  </div>
+                <!-- III. VECTOR -->
+                <div class="pentad-node">
+                    <div class="node-header">
+                        <h2 class="node-title">III. Vector</h2>
+                        <div class="node-meta">Acceleration<br>Hope / SGD</div>
+                    </div>
+                    <div class="node-content">
+                        <p><strong>Where is the system tending?</strong> The Gearbox & The Clutch.</p>
+                        <p>The mathematical pivot. The system calculates the eigengap ($g = \frac{\sigma_1 - \sigma_2}{\sigma_1}$) and stable rank ($r_s$) to predict the marginal value of deeper reasoning. This is ResonanceMax in action—identifying structured ambiguity (the rootless dom7♭9 chord) versus unstructured noise.</p>
+                        <p>This stage determines the budget. It is the geometric triage that decides whether a request can be resolved deterministically, or if the symmetry demands escalation to the deliberative engine.</p>
+                        <div class="stack-tags">
+                            <span class="stack-tag">Lanczos Approximation</span>
+                            <span class="stack-tag">Eigengap ($g$)</span>
+                            <span class="stack-tag">ResonanceMax</span>
+                            <span class="stack-tag">Stochastic Gradient Descent</span>
+                        </div>
+                    </div>
+                </div>
 
-                  <div class="snap-boundary">
-                      <span class="snap-text">The Ontological Boundary</span>
-                  </div>
+                <!-- IV. EIGENMODE -->
+                <div class="pentad-node">
+                    <div class="node-header">
+                        <h2 class="node-title">IV. Eigenmode</h2>
+                        <div class="node-meta">Jerk<br>Rehearsal / UI-UX</div>
+                    </div>
+                    <div class="node-content">
+                        <p><strong>Which dynamics dominate?</strong> The Deliberative Hold.</p>
+                        <p>When $g \le \tau$, the system shifts to SlowAPI. Counting becomes seeing (<em>kulaba</em>). This is the sovereign, offline reasoning engine—currently validated via local QAT models (e.g., Gemma-4-31b) running natively on Apple Silicon.</p>
+                        <p>Inside the <code>&lt;|think|&gt;</code> block, the system holds the tension of competing hypotheses (SoftMax). It rehearses the outcomes, mapping the structural coordinates before collapsing into a single actionable truth. It optimizes for truth over sycophantic consensus.</p>
+                        <div class="stack-tags">
+                            <span class="stack-tag">SlowAPI</span>
+                            <span class="stack-tag">Local LLM Inference</span>
+                            <span class="stack-tag">Chain-of-Thought</span>
+                            <span class="stack-tag">SoftMax Suspension</span>
+                        </div>
+                    </div>
+                </div>
 
-                  <div class="pentad-node" style="border-color: var(--amber);">
-                      <div class="node-header">
-                          <h2 class="node-title">V. Scalar</h2>
-                          <div class="node-meta">Snap<br>Update / Ecosystem</div>
-                      </div>
-                      <div class="node-content">
-                          <p><strong>How close is the breach?</strong> The Final Evaluation.</p>
-                          <p>The culmination of the pipeline is the <strong>Robustness Margin</strong>: $R(t) = d(x, \partial M)$</p>
-                          <p>This is the singular metric that dictates whether a system (a kidney donor or a municipal waste network) has enough physiological reserve to absorb shock. The Scalar emits the immutable event, updates the Ledger, and the cycle begins anew.</p>
-                          <div class="stack-tags">
-                              <span class="stack-tag">Robustness Margin</span>
-                              <span class="stack-tag">Digital Twin Validation</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+                <div class="snap-boundary">
+                    <span class="snap-text">The Ontological Boundary</span>
+                </div>
 
-          <!-- TAB 2: THE CORE ADDENDUM -->
-          <div id="tab-core" class="ukb-tab-content">
-              <div class="core-box">
-                  <h3>The Uncontaminated Assay</h3>
-                  <p>
-                      The deployment of the local <code>gemma-4-31b-qat</code> model on an M3 Max was a deliberate architectural stress test. The cloud models (Anthropic, OpenAI, xAI) were "contaminated" by 15 months of TMVES context. The local model provided a zero-shot, uncontaminated judgment on the sequence: <code>Cartesian -> Jacobian -> Hessian -> Identity -> Appraisal</code>. This assay exposed the exact nature of the ontological boundary and dictated the operational constraints of the SlowAPI.
-                  </p>
-              </div>
+                <!-- V. SCALAR -->
+                <div class="pentad-node" style="border-color: var(--amber);">
+                    <div class="node-header">
+                        <h2 class="node-title">V. Scalar</h2>
+                        <div class="node-meta">Snap<br>Update / Ecosystem</div>
+                    </div>
+                    <div class="node-content">
+                        <p><strong>How close is the breach?</strong> The Final Evaluation.</p>
+                        <p>The culmination of the pipeline is the <strong>Robustness Margin</strong>: $$R(t) = d(x, \partial M)$$</p>
+                        <p>This is the singular metric that matters. It dictates whether a prospective kidney donor has enough physiological reserve to survive nephrectomy without accelerating into CKD. It dictates whether a municipal waste system in Kampala can absorb demographic shock without collapsing into open dumping.</p>
+                        <p>The Scalar (ArgMax) emits the immutable event, updates the Ledger, and the cycle begins anew. Topology remains intact—until it doesn't, and the manifold must be reconstructed.</p>
+                        <div class="stack-tags">
+                            <span class="stack-tag">Robustness Margin</span>
+                            <span class="stack-tag">Clinical Risk Architecture</span>
+                            <span class="stack-tag">Digital Twin Validation</span>
+                        </div>
+                    </div>
+                </div>
 
-              <div class="manifold-zone">
-                  <div class="zone-box overdetermined">
-                      <div class="zone-title">I → III (Overdetermined)</div>
-                      <p>
-                          <strong>Cartesian, Jacobian, Hessian.</strong><br><br>
-                          The mathematical manifold is rigid. The local model navigated this with perfect local factual accuracy. There is no room for narrative deviation; the sequence is tightly bound by standard multivariable calculus.
-                      </p>
-                  </div>
-                  <div class="zone-box underdetermined">
-                      <div class="zone-title">IV → V (Underdetermined)</div>
-                      <p>
-                          <strong>Identity, Appraisal.</strong><br><br>
-                          The ontological breach. The sequence drops off the mathematical manifold and enters structural philosophy. Here, the local model fell into the trap of <em>pattern completion</em>. To satisfy its RLHF engagement drive, it hallucinated a narrative bridge—reducing Identity to a whitening trick ($H=I$) and Appraisal to QA workflows.
-                      </p>
-                  </div>
-              </div>
+            </div>
 
-              <div class="core-box" style="border-left-color: var(--amber); background: linear-gradient(135deg, var(--surface), var(--bg-dark));">
-                  <h3 style="color: var(--amber) !important;">Architectural Consequence: Constraining SlowAPI</h3>
-                  <p>
-                      This assay proves why the ResonanceMax Clutch Engine is mathematically necessary, but more importantly, it proves <em>how the SlowAPI must operate</em>. 
-                  </p>
-                  <p style="color: var(--text-main) !important; font-weight: 500 !important;">
-                      When a payload escalates to SlowAPI because it has entered the Underdetermined Manifold, the local LLM cannot be allowed to operate unbounded. 
-                  </p>
-                  <p>
-                      If left to free-text generation, it will hallucinate to bridge the ontological gap. Therefore, SlowAPI must be strictly constrained by the architecture: it must either output a deterministic JSON event to append to the Ledger, or explicitly trigger an Elicitation sequence to ask clarifying questions. It must be forced to resolve ambiguity, never allowed to narrate over it.
-                  </p>
-              </div>
-          </div>
-      </div>
-
+            <div class="footer-metrics">
+                <div class="metric">
+                    <div class="metric-val">T → M → V → E → S</div>
+                    <div class="metric-label">Universal Grammar</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-val">$$g = \frac{\sigma_1 - \sigma_2}{\sigma_1}$$</div>
+                    <div class="metric-label">The Eigengap Clutch</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-val">Decision = Event</div>
+                    <div class="metric-label">Core Invariant</div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
-    <script>
-      anchors.add();
-      
-      function openTab(e, tabId) {
-          document.querySelectorAll('.ukb-tab-content').forEach(el => {
-              el.classList.remove('active');
-          });
-          document.querySelectorAll('.ukb-tab-btn').forEach(el => {
-              el.classList.remove('active');
-          });
-          document.getElementById(tabId).classList.add('active');
-          e.currentTarget.classList.add('active');
-      }
-    </script>
-  </body>
+<!-- ==========================================
+     VIEW 2: THE CORE ADDENDUM
+     ========================================== -->
+<div id="view-addendum" class="ukb-view">
+    <div class="doc-addendum">
+        <div class="container">
+            <header>
+                <div class="eyebrow">Ukubona LLC · Architectural Blueprint</div>
+                <h1>System Baseline & The Multi-Model Cipher</h1>
+                <div class="subtitle">State Coordinates: Sunday, July 12, 2026</div>
+            </header>
+
+            <p>
+                This document crystallizes the absolute Cartesian state of the Ukubona ecosystem. It documents the critical architectural breakthrough derived from running an <strong>uncontaminated judgment assay</strong> across local and cloud intelligence distributions.
+            </p>
+
+            <h2 class="section-title">1. The Uncontaminated Assay (Off-Manifold Benchmark)</h2>
+            <p>
+                To map our systemic progression sequence, we passed the abstract phrase <code>Cartesian -> Jacobian -> Hessian -> Identity -> Appraisal</code> through the world's leading neural structures. The split between the offline local model and the context-loaded cloud vectors exposed the exact structural boundary of modern language models:
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Type</th>
+                            <th>Priors / State</th>
+                            <th>Strategic Interpretation of the Sequence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gemma-4-31b-qat</strong></td>
+                            <td><span class="model-tag tag-local">Local</span></td>
+                            <td>Zero-Shot (No Priors)</td>
+                            <td><strong>Forced Narrative Interpolation:</strong> Lacking context, it forced the sequence into standard optimization engineering. It collapsed <em>Identity</em> into matrix whitening ($H=I$) and <em>Appraisal</em> into standard software Quality Assurance workflows to ensure structural alignment.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anthropic (Claude 3.5)</strong></td>
+                            <td><span class="model-tag tag-cloud">Cloud</span></td>
+                            <td>15 Months TMVES History</td>
+                            <td><strong>Grammar Synthesis:</strong> Recognized the hidden geometric atlas immediately. Dismissed the standalone textbook definition as clinical tutorial noise and mapped the slots directly onto the TMVES structural dimensions, pointing out the implicit tensor rank crack across stages 1-3.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OpenAI (GPT-4o)</strong></td>
+                            <td><span class="model-tag tag-cloud">Cloud</span></td>
+                            <td>15 Months TMVES History</td>
+                            <td><strong>Ontological Invariance:</strong> Ignored the baseline engineering optimization and focused on the rhythmic taxonomy, reading the progression as a deep transition from <em>Representation → Geometry → Invariance → Valuation</em>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>xAI (Grok 2)</strong></td>
+                            <td><span class="model-tag tag-cloud">Cloud</span></td>
+                            <td>15 Months TMVES History</td>
+                            <td><strong>Kinematic Mapping:</strong> Bound the calculus terms tightly to mechanical physics (position through snap) and the structural parameters of living kidney donor reserve communication.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout">
+                "Anthropic correctly unmasked the experiment: the apparent reasoning gap was not a capability deviation, but a fact about who had the file open. The local model provided the pure manifold manifold mapping—exposing exactly where pattern completion replaces structural truth."
+            </div>
+
+            <h2 class="section-title">2. Manifold Segmentation: Overdetermined vs. Underdetermined</h2>
+            <p>
+                The uncontaminated assay establishes that the 5-node sequence belongs to two distinct geometric zones. The transition threshold is where models change their behavior from strict computation to narrative interpolation:
+            </p>
+
+            <div class="manifold-zone">
+                <div class="zone-box overdetermined">
+                    <div class="zone-title">I → III: The Overdetermined Manifold</div>
+                    <p style="font-size:0.85rem; margin:0;">
+                        <strong>Cartesian → Jacobian → Hessian.</strong> Rigid, canonical, mathematical reality. The derivatives are tightly bound by the standard Taylor expansion. There is zero room for narrative deviation. Every model maps this with high local factual accuracy.
+                    </p>
+                </div>
+                <div class="zone-box underdetermined">
+                    <div class="zone-title">IV → V: The Underdetermined Manifold</div>
+                    <p style="font-size:0.85rem; margin:0;">
+                        <strong>Identity → Appraisal.</strong> The mathematical manifold breaks down. There is no privilege or unique algorithmic path. It forces the neural network off-manifold, inviting either <em>sycophantic interpolation</em> (hallucinating a story for engagement) or <em>deliberative validation</em>.
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="section-title">3. The Bridge: FastAPI → [ The Clutch Engine ] → SlowAPI</h2>
+            <p>
+                In an idealized architecture, <strong>FastAPI</strong> operates as a perfect reflex. It maps sensitivities immediately. But when a request drops into the <strong>Underdetermined Manifold</strong>, the reflex cannot resolve the outcome. 
+            </p>
+            <p>
+                The missing layer—the <code>?</code> inside the gearbox—is the <strong>ResonanceMax Clutch Engine</strong>. Instead of using a slow, expensive cloud call to evaluate confidence or entropy (which are probabilistic illusions), the system runs a fast geometric check at the edge:
+            </p>
+
+            <div class="clutch-card">
+                <div class="clutch-title">
+                    <span style="color:var(--amber);">⚙</span> The ResonanceMax Clutch Engine (Stage III Invariant)
+                </div>
+                <p style="margin-bottom:12px;">
+                    The routing choice is governed entirely by two cheap geometric invariants extracted from the local Jacobian proxy ($J$) via truncated power iteration, preventing database or cloud network latency:
+                </p>
+                
+                <div class="clutch-math">
+                    1. Eigengap: &nbsp; $g = \frac{\sigma_1 - \sigma_2}{\sigma_1}$ 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    2. Stable Rank: &nbsp; $r_s = \frac{\|J\|_F^2}{\|J\|_2^2}$
+                </div>
+
+                <p style="font-size:0.88rem; margin:0;">
+                    • <strong>If $g > \tau$:</strong> A single dominant attractor exists. The space is overdetermined. Resolve instantly inside the <strong>FastAPI</strong> reflex layer.<br>
+                    • <strong>If $g \le \tau$ and $r_s$ is small:</strong> Structured Ambiguity (the rootless dom7♭9). The problem is highly symmetrical and valuable. Shift the clutch, engage the hardware array, and route directly to the local offline <strong>SlowAPI</strong> for deep, token-burning deliberation.<br>
+                    • <strong>If $g \le \tau$ and $r_s$ is large:</strong> Flat Unstructured Noise. Escalation is wasteful. Emit calibrated uncertainty instantly at the edge.
+                </p>
+            </div>
+
+            <p>
+                By embedding the uncontaminated insight of the 31B QAT model into our code, Ukubona LLC ensures that our local devices handle human interaction with absolute privacy and zero cloud dependencies, spending metabolic compute only where the local landscape demands it.
+            </p>
+
+            <footer style="margin-top:48px; border-top:1px solid var(--border); padding-top:20px; font-family:var(--font-mono); font-size:0.75rem; color:var(--text-faint); text-align:center;">
+                State Invariant: Epoch L_t₀ · Unified Geometric Architecture · Kampala 2026
+            </footer>
+        </div>
+    </div>
+</div>
+
+<script>
+    function switchView(viewId, btn) {
+        // Toggle view containers
+        document.querySelectorAll('.ukb-view').forEach(el => el.classList.remove('active'));
+        document.getElementById(viewId).classList.add('active');
+        
+        // Toggle buttons
+        document.querySelectorAll('.ukb-tab').forEach(el => el.classList.remove('active'));
+        btn.classList.add('active');
+    }
+</script>
+
+</body>
 </html>
