@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartesian State · Ukubona LLC · 2026-07-12</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <script>
       window.MathJax = {
         tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] }
       };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
+
     <style>
         :root {
             --bg: #0b0a0d;
@@ -56,8 +56,9 @@
             top: 0;
             z-index: 9999;
             backdrop-filter: blur(8px);
+            flex-wrap: wrap;
         }
-        
+
         .ukb-tab {
             background: transparent;
             border: 1px solid var(--border);
@@ -71,12 +72,12 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
+
         .ukb-tab:hover {
             color: var(--text-main);
             border-color: var(--text-dim);
         }
-        
+
         .ukb-tab.active {
             color: var(--amber);
             border-color: var(--amber);
@@ -87,7 +88,7 @@
             display: none;
             animation: fadeIn 0.4s ease;
         }
-        
+
         .ukb-view.active {
             display: block;
         }
@@ -162,6 +163,53 @@
         .doc-addendum .zone-box.underdetermined .zone-title { color: #f28b82; }
 
         .doc-addendum .callout { font-style: italic; border-left: 2px solid var(--violet); padding-left: 16px; margin: 20px 0; color: var(--text-main); }
+
+        /* =========================================================
+           DOC 3: THE CONSTRAINT ENGINEERING ADDENDUM (TAB III)
+           Reuses doc-addendum primitives + adds:
+           - diagnosis-card (the g=0 misread)
+           - gate-flow (ensemble disagreement pipeline)
+           - code-block (grammar schema)
+           - action-split (R&D / Marketplace)
+           ========================================================= */
+        .doc-constraint .diagnosis-card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--violet); border-radius: 8px; padding: 28px; margin: 32px 0; }
+        .doc-constraint .diagnosis-title { font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-main); margin: 0 0 14px 0; }
+        .doc-constraint .diagnosis-math { font-family: var(--font-mono); background: rgba(0,0,0,0.2); padding: 14px; border-radius: 6px; margin: 16px 0; border: 1px solid var(--border); font-size: 0.9rem; text-align: center; color: var(--amber); }
+        .doc-constraint .glyph-pair { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-faint); text-align: center; margin-top: 12px; letter-spacing: 0.05em; }
+        .doc-constraint .glyph-pair strong { color: var(--violet); }
+
+        .doc-constraint .gate-flow { display: flex; flex-direction: column; gap: 0; margin: 32px 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+        .doc-constraint .gate-step { padding: 20px 28px; border-bottom: 1px solid var(--border); background: var(--surface); position: relative; }
+        .doc-constraint .gate-step:last-child { border-bottom: none; }
+        .doc-constraint .gate-step:nth-child(odd) { background: var(--bg); }
+        .doc-constraint .gate-step-label { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--amber); margin-bottom: 6px; }
+        .doc-constraint .gate-step-body { color: var(--text-dim); font-size: 0.9rem; }
+        .doc-constraint .gate-step-body strong { color: var(--text-main); }
+
+        .doc-constraint .code-block { background: #08070a; border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin: 24px 0; overflow-x: auto; }
+        .doc-constraint .code-block pre { margin: 0; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7; color: #d8d2c8; }
+        .doc-constraint .code-block .kw { color: var(--violet); }
+        .doc-constraint .code-block .cls { color: var(--amber); }
+        .doc-constraint .code-block .str { color: #81c995; }
+        .doc-constraint .code-block .cmt { color: var(--text-faint); font-style: italic; }
+        .doc-constraint .code-caption { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-faint); text-align: center; margin-top: -12px; margin-bottom: 24px; letter-spacing: 0.05em; }
+
+        .doc-constraint .action-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+        .doc-constraint .action-box { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 24px; }
+        .doc-constraint .action-box.rnd { border-top: 3px solid var(--violet); }
+        .doc-constraint .action-box.market { border-top: 3px solid var(--amber); }
+        .doc-constraint .action-label { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+        .doc-constraint .action-box.rnd .action-label { color: var(--violet); }
+        .doc-constraint .action-box.market .action-label { color: var(--amber); }
+        .doc-constraint .action-box p { font-size: 0.88rem; margin: 0; color: var(--text-dim); }
+        .doc-constraint .action-box p strong { color: var(--text-main); }
+
+        .doc-constraint .provenance-note { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint); background: rgba(0,0,0,0.15); border: 1px solid var(--border); border-radius: 6px; padding: 14px 20px; margin: 24px 0; }
+
+        @media (max-width: 640px) {
+            .doc-addendum .manifold-zone,
+            .doc-constraint .action-split { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -170,6 +218,7 @@
 <div class="ukb-global-nav">
     <button class="ukb-tab active" onclick="switchView('view-baseline', this)">Cartesian State (Baseline)</button>
     <button class="ukb-tab" onclick="switchView('view-addendum', this)">The Core Addendum</button>
+    <button class="ukb-tab" onclick="switchView('view-constraint', this)">Tab III · Constraint Engineering</button>
 </div>
 
 <!-- ==========================================
@@ -189,8 +238,7 @@
             </div>
 
             <div class="pentad-grid">
-                
-                <!-- I. TENSOR -->
+
                 <div class="pentad-node">
                     <div class="node-header">
                         <h2 class="node-title">I. Tensor</h2>
@@ -209,7 +257,6 @@
                     </div>
                 </div>
 
-                <!-- II. MATRIX -->
                 <div class="pentad-node">
                     <div class="node-header">
                         <h2 class="node-title">II. Matrix</h2>
@@ -228,7 +275,6 @@
                     </div>
                 </div>
 
-                <!-- III. VECTOR -->
                 <div class="pentad-node">
                     <div class="node-header">
                         <h2 class="node-title">III. Vector</h2>
@@ -247,7 +293,6 @@
                     </div>
                 </div>
 
-                <!-- IV. EIGENMODE -->
                 <div class="pentad-node">
                     <div class="node-header">
                         <h2 class="node-title">IV. Eigenmode</h2>
@@ -270,7 +315,6 @@
                     <span class="snap-text">The Ontological Boundary</span>
                 </div>
 
-                <!-- V. SCALAR -->
                 <div class="pentad-node" style="border-color: var(--amber);">
                     <div class="node-header">
                         <h2 class="node-title">V. Scalar</h2>
@@ -370,7 +414,7 @@
             </div>
 
             <div class="callout">
-                "Anthropic correctly unmasked the experiment: the apparent reasoning gap was not a capability deviation, but a fact about who had the file open. The local model provided the pure manifold manifold mapping—exposing exactly where pattern completion replaces structural truth."
+                "Anthropic correctly unmasked the experiment: the apparent reasoning gap was not a capability deviation, but a fact about who had the file open. The local model provided the pure manifold mapping—exposing exactly where pattern completion replaces structural truth."
             </div>
 
             <h2 class="section-title">2. Manifold Segmentation: Overdetermined vs. Underdetermined</h2>
@@ -388,14 +432,14 @@
                 <div class="zone-box underdetermined">
                     <div class="zone-title">IV → V: The Underdetermined Manifold</div>
                     <p style="font-size:0.85rem; margin:0;">
-                        <strong>Identity → Appraisal.</strong> The mathematical manifold breaks down. There is no privilege or unique algorithmic path. It forces the neural network off-manifold, inviting either <em>sycophantic interpolation</em> (hallucinating a story for engagement) or <em>deliberative validation</em>.
+                        <strong>Identity → Appraisal.</strong> The mathematical manifold breaks down. There is no privileged or unique algorithmic path. It forces the neural network off-manifold, inviting either <em>sycophantic interpolation</em> (hallucinating a story for engagement) or <em>deliberative validation</em>.
                     </p>
                 </div>
             </div>
 
             <h2 class="section-title">3. The Bridge: FastAPI → [ The Clutch Engine ] → SlowAPI</h2>
             <p>
-                In an idealized architecture, <strong>FastAPI</strong> operates as a perfect reflex. It maps sensitivities immediately. But when a request drops into the <strong>Underdetermined Manifold</strong>, the reflex cannot resolve the outcome. 
+                In an idealized architecture, <strong>FastAPI</strong> operates as a perfect reflex. It maps sensitivities immediately. But when a request drops into the <strong>Underdetermined Manifold</strong>, the reflex cannot resolve the outcome.
             </p>
             <p>
                 The missing layer—the <code>?</code> inside the gearbox—is the <strong>ResonanceMax Clutch Engine</strong>. Instead of using a slow, expensive cloud call to evaluate confidence or entropy (which are probabilistic illusions), the system runs a fast geometric check at the edge:
@@ -408,10 +452,10 @@
                 <p style="margin-bottom:12px;">
                     The routing choice is governed entirely by two cheap geometric invariants extracted from the local Jacobian proxy ($J$) via truncated power iteration, preventing database or cloud network latency:
                 </p>
-                
+
                 <div class="clutch-math">
-                    1. Eigengap: &nbsp; $g = \frac{\sigma_1 - \sigma_2}{\sigma_1}$ 
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    1. Eigengap: &nbsp; $g = \frac{\sigma_1 - \sigma_2}{\sigma_1}$
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     2. Stable Rank: &nbsp; $r_s = \frac{\|J\|_F^2}{\|J\|_2^2}$
                 </div>
 
@@ -433,13 +477,121 @@
     </div>
 </div>
 
+<!-- ==========================================
+     VIEW 3: TAB III — CONSTRAINT ENGINEERING ADDENDUM
+     ========================================== -->
+<div id="view-constraint" class="ukb-view">
+    <div class="doc-addendum doc-constraint">
+        <div class="container">
+            <header>
+                <div class="eyebrow">Ukubona LLC · Tab III — Constraint Engineering Addendum</div>
+                <h1>Okubala si Kulaba</h1>
+                <div class="subtitle">Counting is not seeing · State Coordinates: Sunday, July 12, 2026</div>
+            </header>
+
+            <p>
+                Tab II identified the fault line. This tab does not revisit the ontology — it hardens it. Where the Core Addendum diagnosed <em>that</em> the local model misread its own output, this addendum specifies <em>how</em> the system stops that misread from ever reaching the ledger: one diagnosis, one gate, one constraint, and the two concrete tracks it opens.
+            </p>
+
+            <h2 class="section-title">1. The Diagnosis: A Zero Eigengap Was Read as an Ending</h2>
+            <p>
+                "Whitening trick, $H=I$" is not noise — it is correct linear algebra pointed the wrong way. $H=I$ means every Hessian eigenvalue is equal, which means the eigengap is exactly zero.
+            </p>
+
+            <div class="diagnosis-card">
+                <div class="diagnosis-title">The Misread, Stated Precisely</div>
+                <div class="diagnosis-math">$H = I \;\Longrightarrow\; \sigma_1 = \sigma_2 \;\Longrightarrow\; g = \frac{\sigma_1-\sigma_2}{\sigma_1} = 0$</div>
+                <p style="margin:0;">
+                    By the Tab I rule, $g \le \tau$ triggers SlowAPI. A zero eigengap is not a resolved state — it is the <strong>maximal-escalation</strong> state. The local model counted the linear algebra correctly and narrated it as a conclusion instead of a signal to stop and deliberate further. It ran the exact spectral signature of "escalate" while emitting the surface form of "done."
+                </p>
+                <div class="glyph-pair">okubala (counting) ≠ kulaba (seeing) — <strong>the assay caught its own blind spot live</strong></div>
+            </div>
+
+            <p>
+                The asymmetry is diagnostic, not incidental. Node IV ($H=I$) has a nearby mathematical attractor to recover — the linear algebra is real, just misapplied. Node V ("Appraisal → QA workflows") has no comparable structure underneath it; it is thin narrative interpolation with nothing to rescue. That difference tells the constraint-engineering effort where to spend itself: Node IV needs correction, Node V needs scaffolding it never had.
+            </p>
+
+            <h2 class="section-title">2. The Ensemble Disagreement Gate</h2>
+            <p>
+                A single local model, run once, cannot distinguish "this zone is genuinely underdetermined" from "this rollout happened to hallucinate." Nodes IV and V have no Federated Ground Truth to check error against, unlike I–III. The fix is to replace ground-truth comparison with cross-sample and cross-model agreement — the same signal, produced a different way.
+            </p>
+
+            <div class="gate-flow">
+                <div class="gate-step">
+                    <div class="gate-step-label">Step 1 · Sample</div>
+                    <div class="gate-step-body">Run the same prompt <strong>3–5 times at temperature</strong> on the local model, or against a second small local model. No single rollout is trusted in isolation.</div>
+                </div>
+                <div class="gate-step">
+                    <div class="gate-step-label">Step 2 · Measure Agreement</div>
+                    <div class="gate-step-body">Score agreement across the samples. <strong>Convergence</strong> on a claim behaves like an overdetermined answer even off the Taylor-expansion manifold. <strong>Scatter</strong> is the underdetermined-zone signal — the runtime classifier the ontology needed but didn't have.</div>
+                </div>
+                <div class="gate-step">
+                    <div class="gate-step-label">Step 3 · Gate</div>
+                    <div class="gate-step-body">Disagreement-as-gate stands in for the eigengap check at nodes IV–V, where $g$ itself can't be computed against ground truth. <strong>The diagnostic and the runtime classifier are the same object.</strong></div>
+                </div>
+            </div>
+
+            <h2 class="section-title">3. The Constraint: Grammar-Constrained Decoding</h2>
+            <p>
+                Since SlowAPI runs local inference, the lever isn't a cloud tool-call contract — it's a decoding-time constraint. A GBNF grammar or equivalent JSON-schema constraint makes free-text narration <strong>structurally unreachable</strong>, not merely discouraged. The model must either commit to a resolve event or confess ambiguity through a required field — never drift into prose instead.
+            </p>
+
+            <div class="code-block">
+<pre><span class="kw">from</span> pydantic <span class="kw">import</span> BaseModel
+<span class="kw">from</span> typing <span class="kw">import</span> Literal, Union
+
+<span class="kw">class</span> <span class="cls">LedgerEvent</span>(BaseModel):
+    mode: Literal[<span class="str">"resolve"</span>] = <span class="str">"resolve"</span>
+    event_type: str                  <span class="cmt"># e.g. "eigenmode.identity_resolved"</span>
+    payload: dict
+    manifold_zone: Literal[<span class="str">"overdetermined"</span>, <span class="str">"underdetermined"</span>]
+    confidence: float                 <span class="cmt"># from ensemble agreement, not vibes</span>
+    provenance: str                   <span class="cmt"># e.g. "slowapi:gemma-4-31b-qat"</span>
+
+<span class="kw">class</span> <span class="cls">ElicitationRequest</span>(BaseModel):
+    mode: Literal[<span class="str">"elicit"</span>] = <span class="str">"elicit"</span>
+    question: str
+    options: list[str] | <span class="kw">None</span> = <span class="kw">None</span>
+    reason_for_ambiguity: str         <span class="cmt"># forces the model to name the gap</span>
+    manifold_zone: Literal[<span class="str">"underdetermined"</span>] = <span class="str">"underdetermined"</span>
+
+SlowAPIResponse = Union[LedgerEvent, ElicitationRequest]</pre>
+            </div>
+            <div class="code-caption">Compiled as the sampling grammar — resolve or elicit, never prose in between</div>
+
+            <div class="provenance-note">
+                Both branches hit the ledger as first-class events — the ask, and whatever eventually resolves it, are provenance, not a UX dead end. This is the same move as sovereign-override logging: nothing the system does under ambiguity is discarded, it is either a Scalar update or a logged elicitation waiting on one.
+            </div>
+
+            <p>
+                None of this is clinical-specific — which is exactly why it belongs at Tab III rather than bolted onto one app. The resolve-or-elicit discipline has to hold wherever SlowAPI is invoked: the waste twin, the NPA deployment work, whatever comes next.
+            </p>
+
+            <h2 class="section-title">4. What Travels Next: R&D and Marketplace</h2>
+
+            <div class="action-split">
+                <div class="action-box rnd">
+                    <div class="action-label">R&D · Next Roundtable Pass</div>
+                    <p>Hand xAI, Google, and OpenAI the ensemble-disagreement-as-gate proposal specifically and watch whether their critiques <strong>converge or scatter</strong>. Convergence is signal. Scatter means the proposal itself is back in an underdetermined zone — the same assay, now pointed at itself.</p>
+                </div>
+                <div class="action-box market">
+                    <div class="action-label">Marketplace · Next Clinic Conversation</div>
+                    <p>None of this language survives contact with a clinic, and it shouldn't have to. What survives is the promise: <strong>the system never quietly guesses on a judgment call</strong> — it resolves by rule or it stops and asks, and either way it's logged. Pull one real ambiguous judgment from the ledger, run it through resolve/elicit by hand, and bring that as the demo instead of the theory.</p>
+                </div>
+            </div>
+
+            <footer style="margin-top:48px; border-top:1px solid var(--border); padding-top:20px; font-family:var(--font-mono); font-size:0.75rem; color:var(--text-faint); text-align:center;">
+                State Invariant: Epoch L_t₀ + 1 · Resolve-or-Elicit Discipline · Kampala 2026
+            </footer>
+        </div>
+    </div>
+</div>
+
 <script>
     function switchView(viewId, btn) {
-        // Toggle view containers
         document.querySelectorAll('.ukb-view').forEach(el => el.classList.remove('active'));
         document.getElementById(viewId).classList.add('active');
-        
-        // Toggle buttons
+
         document.querySelectorAll('.ukb-tab').forEach(el => el.classList.remove('active'));
         btn.classList.add('active');
     }
