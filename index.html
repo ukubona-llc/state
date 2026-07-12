@@ -691,10 +691,47 @@ SlowAPIResponse = Union[LedgerEvent, ElicitationRequest]</pre>
             <p>Even with a sharp constraint, the *relevant* subspace is often still combinatorial as fuck...</p>
 
             <!-- (full conversation continued verbatim as provided) -->
+             <h2 class="section-title">1. The search space is still insane</h2>
+            <p>Even with a sharp constraint, the <em>relevant</em> subspace is often still combinatorial as fuck:</p>
+            <ul style="color:var(--text-dim); margin-bottom:16px; padding-left:24px;">
+                <li>Multiple interpretations of your intent</li>
+                <li>Dozens of angles / subproblems / failure modes</li>
+                <li>Hundreds of possible tool sequences or retrieval paths</li>
+                <li>Thousands of candidate sources/documents that partially match</li>
+                <li>Branching reasoning trees (especially on planning, code, research, strategy)</li>
+            </ul>
+            <p>The model doesn't just "know" the perfect next step. Good models simulate/explore branches internally (in hidden activations or explicit CoT/tool calls). That burns tokens.</p>
+
+            <h2 class="section-title">2. Retrieval & ranking explosion</h2>
+            <p>Internet = infinite dataset, sure. But:</p>
+            <ul style="color:var(--text-dim); margin-bottom:16px; padding-left:24px;">
+                <li>Vector search / BM25 / whatever still returns a <em>ton</em> of "close enough" hits</li>
+                <li>You then have to rerank, dedupe, synthesize, check contradictions</li>
+                <li>Each round of "let me look deeper on this promising lead" multiplies tokens</li>
+                <li>Follow-up searches, citation chasing, cross-verification... it compounds fast</li>
+            </ul>
+            <p>This is why agentic setups and long-context models eat tokens like crazy even when the <em>final</em> answer is concise.</p>
+
+            <h2 class="section-title">3. Verification & robustness tax</h2>
+            <p>Smart usage isn't just "find the thing." It's:</p>
+            <p>Generate candidates → critique → refine → generate more → cross-check sources → handle edge cases. That's literally search + optimization under uncertainty. Classic combinatorial.</p>
+
+            <h2 class="section-title">The practical reality</h2>
+            <p>After query optimization, the remaining explosion is mostly:</p>
+            <ul style="color:var(--text-dim); margin-bottom:16px; padding-left:24px;">
+                <li><strong>Breadth / Quality of the available Data</strong> (how many plausible paths do I explore?)</li>
+                <li><strong>Depth / Computation or Combinatorial Explosion</strong> (how far down each rabbit hole before I prune?)</li>
+                <li><strong>Iteration / Feedback or Optimization Algorithm</strong> (how many cycles of "this almost works, try again with adjustment?")</li>
+            </ul>
+            <p>That's why systems that are good at <em>efficient search</em> (strong priors, good pruning, tool orchestration, self-critique) win even when the dataset is infinite.</p>
+
+            <footer style="margin-top:48px; border-top:1px solid var(--border); padding-top:20px; font-family:var(--font-mono); font-size:0.75rem; color:var(--text-faint); text-align:center;">
+                State Invariant: Epoch L_t₀ + 1 · Pressure Test on the Family Ledger · Kampala 2026
+            </footer>
 
             <footer style="margin-top:48px; border-top:1px solid var(--border); padding-top:20px; font-family:var(--font-mono); font-size:0.75rem; color:var(--text-faint); text-align:center;">
                 (by Anthropic + Extended Grok Session) · Pressure Test on the Family Ledger · Kampala 2026
-            </footer>
+            </footer>   
         </div>
     </div>
 </div>
